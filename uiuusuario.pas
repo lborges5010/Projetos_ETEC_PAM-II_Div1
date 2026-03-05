@@ -45,7 +45,7 @@ begin
   begin
       Close;
       SQL.Clear;
-
+          //id variavel publica
       if (id=0) then
        begin
          SQL.Add('Insert into usuarios(usunome,usulogin,ususenha)values(:usunome,:usulogin,:ususenha);');
@@ -65,7 +65,8 @@ end;
 
 procedure Tfrmiuusuario.FormShow(Sender: TObject);
 begin
-    id :=1;
+    if (id<>0) then
+   begin
     With dm.usuario do
      begin
        Close;
@@ -78,6 +79,7 @@ begin
       edtusunome.Text:=dm.usuariousunome.AsString;
       edtusulogin.Text:=dm.usuariousulogin.AsString;
       edtususenha.Text:=dm.usuarioususenha.AsString;
-end;
+   end;
+ end;
 
 end.

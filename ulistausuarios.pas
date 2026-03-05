@@ -22,6 +22,8 @@ type
     BindSourceDB1: TBindSourceDB;
     BindingsList1: TBindingsList;
     LinkListControlToField1: TLinkListControlToField;
+    procedure Button2Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,5 +36,24 @@ var
 implementation
 
 {$R *.fmx}
-   uses umodulo;
+   uses umodulo, uiuusuario;
+procedure TFrmListaUsuarios.Button2Click(Sender: TObject);
+begin
+    Frmiuusuario.id := 0; //id publico da outra pagina
+    Frmiuusuario.Show;
+
+end;
+
+procedure TFrmListaUsuarios.FormShow(Sender: TObject);
+begin
+   //enquanto
+   with dm.usuario do
+    begin  //listar todas as informações
+       Close;
+       SQL.Clear;
+       SQL.Add('Select * from usuarios;');
+       Open;
+    end;
+end;
+
 end.
